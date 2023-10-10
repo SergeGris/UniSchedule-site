@@ -9,20 +9,9 @@ app = Flask(__name__)
 
 
 
-def fail(message):
-	print("\033[91m" + message + "\033[0m")
-	exit(0)
-
-universities = None
-try:
-	with open("./universities.json", encoding="utf-8") as f:
-		universities = json.load(f)
-except Exception as e:
-	fail(str(e))
-
 @app.route("/")
 def index():
-	return render_template("index.html", universities=universities)
+	return render_template("index.html")
 
 
 
