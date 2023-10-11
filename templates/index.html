@@ -8,42 +8,34 @@
 
 {% block content %}
 
-<form action="/" method="get" id="uni-form">
+<form action="/schedule" method="get" id="uni-form">
 
 	<div id="uni-container">
 		<h3>Высшее учебное заведение</h3>
 		<select name="university" id="uni-select">
-			<option>ВШЭ</option>
-			<option>ФизТех</option>
-			<option>МГУ</option>
+			<option hidden disabled selected value>-- Выберете ВУЗ --</option>
 		</select>
 	</div>
 	<div id="faculty-container">
 		<h3>Факультет</h3>
 		<select name="faculty" id="faculty-select">
-			<option>Факультет 1</option>
-			<option>Факультет 2</option>
-			<option>Факультет 3</option>
+			<option hidden disabled selected value>-- Выберете факультет --</option>
 		</select>
 	</div>
 	<div id="course-container">
 		<h3>Курс</h3>
 		<select name="course" id="course-select">
-			<option>1 курс</option>
-			<option>2 курс</option>
-			<option>3 курс</option>
+			<option hidden disabled selected value>-- Выберете курс --</option>
 		</select>
 	</div>
 	<div id="group-container">
-		<h3>Курс</h3>
+		<h3>Группа</h3>
 		<select name="group" id="group-select">
-			<option>1 группа</option>
-			<option>2 группа</option>
-			<option>3 группа</option>
+			<option hidden disabled selected value>-- Выберете группу --</option>
 		</select>
 	</div>
 	<div id="button-container">
-		<button action="submit">Найти</button>
+		<button action="submit" id="search-button">Найти</button>
 	</div>
 </form>
 
