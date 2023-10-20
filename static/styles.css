@@ -109,17 +109,42 @@ hr {
 .classes-container {
 	display: flex;
 	flex-direction: column;
-
 }
+
 .class {
 	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
+	flex-direction: row;
+	gap: 0.5rem;
+	justify-content: stretch;
+	align-items: center;
 
 	padding: 0.5rem;
 }
 .class:nth-child(even) {
 	background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* class info */
+.class-time-container {
+	width: 3rem;
+}
+
+.class-time-start {
+	margin: 0;
+	font-size: 1.2rem;
+	opacity: 0.8;
+}
+
+.class-time-end {
+	margin: 0;
+	font-size: 0.8rem;
+	opacity: 0.6;
+}
+
+.vl {
+	width: 1px;
+	align-self: stretch;
+	background-color: var(--border-color);
 }
 
 .class-index {
@@ -132,14 +157,7 @@ hr {
 	color: var(--accent-color)
 }
 
-.class-time-start {
-	margin: 0;
-	font-size: 1.2rem;
-	color: rgba(64, 64, 64, 1)
-}
-
-.class-time-end {
-	margin: 0;
-	font-size: 0.8rem;
-	color: rgba(64, 64, 64, 0.8)
+.label-text {
+	font-size: 0.9rem;
+	opacity: 0.9;
 }

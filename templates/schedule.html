@@ -13,21 +13,38 @@
 			{% for class in days[loop.index0] %}
 			{% if class.name %}
 			<div class="class">
-				<table>
-					<td>
-						<p class="class-time-start">{{ class.start }}</p>
-						<p class="class-time-end">{{ class.end }}</p>
-					</td>
-					<td>
-						<h3 class="class-name">{{ class.name }}</h3>
-						{% if class.teachers and class.teachers[0] %}
-						<div class="teachers-container">{% if class.teachers[1] %} Преподаватели: {% else %} Преподаватель: {% endif %} {{ class.teachers | join(", ") }}</div>
-						{% endif %}
-						{% if class.rooms and class.rooms[0] %}
-						<div class="rooms-container">{% if class.teachers[1] %} Аудитории: {% else %} Аудитория: {% endif %} {{ class.rooms | join(", ") }}</div>
-						{% endif %}
-					</td>
-				</table>
+				<div class="class-time-container">
+					<p class="class-time-start">{{ class.start }}</p>
+					<p class="class-time-end">{{ class.end }}</p>
+				</div>
+				<div class="vl"></div>
+				<div class="info-container">
+					<h3 class="class-name">{{ class.name }}</h3>
+					{% if class.teachers | length > 0 %}
+					<div class="teachers-container">
+						<span class="label-text">
+							{% if class.teachers | length > 1 %}
+								Преподаватели:
+							{% else %}
+								Преподаватель:
+							{% endif %}
+						</span>
+						{{ class.teachers | join(", ") }}
+					</div>
+					{% endif %}
+					{% if class.rooms | length > 0 %}
+					<div class="rooms-container">
+						<span class="label-text">
+							{% if class.teachers | length > 1 %}
+								Аудитории:
+							{% else %}
+								Аудитория:
+							{% endif %}
+						</span>
+						{{ class.rooms | join(", ") }}
+					</div>
+					{% endif %}
+				</div>
 			</div>
 			{% endif %}
 		{% endfor %}
