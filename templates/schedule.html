@@ -20,7 +20,7 @@
 				<div class="vl"></div>
 				<div class="info-container">
 					<h3 class="class-name">{{ class.name }}</h3>
-					{% if class.teachers | length > 0 %}
+					{% if class.teachers[0] %}
 					<div class="teachers-container">
 						<span class="label-text">
 							{% if class.teachers | length > 1 %}
@@ -32,7 +32,7 @@
 						{{ class.teachers | join(", ") }}
 					</div>
 					{% endif %}
-					{% if class.rooms | length > 0 %}
+					{% if class.rooms[0] %}
 					<div class="rooms-container">
 						<span class="label-text">
 							{% if class.teachers | length > 1 %}
