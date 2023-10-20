@@ -10,8 +10,11 @@ load_dotenv()
 # json setup
 
 universities = {}
-last_updates = {"main.json": 0}
+word_map = {}
+with open("json/map.json", "r", encoding="utf8") as f:
+	word_map = json.load(f)
 
+last_updates = {"main.json": 0}
 def update_json():
 	for filename, last_update in last_updates.items():
 		curr_update = -1
@@ -68,6 +71,10 @@ def universities():
 		print(e)
 		return "internal error", 500
 	return universities
+
+@app.route("/map")
+def get_word_map():
+	return word_map
 
 @app.route("/last_update")
 def last_update():
