@@ -4,10 +4,31 @@
 
 {% block content %}
 
-<h1>Template schedule</h1>
-<p>University - {{ university }}</p>
-<p>Faculty - {{ faculty }}</p>
-<p>Course - {{ course }}</p>
-<p>Group - {{ group }}</p>
+<div id="days-container">
+	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
+	<div class="day">
+		<h2 class="day-title">{{ day }}</h2>
+		<hr>
+
+		<div class="classes-container">
+			{% for class in days[loop.index0] %}
+			{% if class.name %}
+			<div class="class">
+				<p class="class-times">{{ class.start }}-{{ class.end }}</p>
+			
+				<h3 class="class-name">{{ class.name }}</h3>
+				{% if class.teachers and class.teachers[0] %}
+				<div class="teachers-container">Учителя: {{ class.teachers | join(", ") }}</div>
+				{% endif %}
+				{% if class.rooms and class.rooms[0] %}
+				<div class="rooms-container">Кабинеты: {{ class.rooms | join(", ") }}</div>
+				{% endif %}
+			</div>
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
+</div>
 
 {% endblock %}

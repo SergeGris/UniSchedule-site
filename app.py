@@ -14,7 +14,6 @@ last_updates = {"main.json": 0}
 
 def update_json():
 	for filename, last_update in last_updates.items():
-		print(filename)
 		curr_update = -1
 		try:
 			curr_update = stat(f"json/{filename}").st_mtime
@@ -37,7 +36,6 @@ def update_json():
 		elif type(data) == dict:
 			iterating = data.items()
 		elif type(data) == str:
-			print(data)
 			if data.endswith(".json"):
 				try:
 					with open(f"json/{data}", "r") as f:
@@ -77,6 +75,8 @@ def index():
 
 @app.route("/schedule")
 def schedule():
+	update_json()
+
 	university = request.args.get("university")
 	faculty = request.args.get("faculty")
 	course = request.args.get("course")
@@ -96,7 +96,8 @@ def schedule():
 		university=university,
 		faculty=faculty,
 		course=course,
-		group=group
+		group=group,
+		days=universities[university][faculty][course][group]
 	)
 
 
