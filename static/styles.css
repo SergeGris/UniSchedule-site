@@ -71,6 +71,7 @@ select:disabled, button:disabled {
 hr {
 	height: 1px;
 	border: none;
+	margin: 0.5rem 0.75rem;
 	background-color: var(--border-color);
 }
 
@@ -99,12 +100,12 @@ hr {
 }
 
 .day {
-	padding: 1rem;
+	/* padding: 1rem; */
 	border-radius: var(--border-radius);
 	border: 1px solid var(--border-color);
 }
 .day-title {
-	margin: 0;
+	margin: 1rem;
 }
 
 .classes-container {
@@ -119,7 +120,7 @@ hr {
 	justify-content: stretch;
 	align-items: center;
 
-	padding: 0.5rem;
+	padding: 0.5rem 0.75rem;
 }
 .class:nth-child(even) {
 	background-color: rgba(255, 255, 255, 0.4);
@@ -127,7 +128,7 @@ hr {
 
 /* class info */
 .class-time-container {
-	width: 3rem;
+	min-width: 4rem;
 }
 
 .class-time-start {
@@ -144,13 +145,14 @@ hr {
 
 .vl {
 	width: 1px;
+	flex-shrink: 0;
+	border: none;
 	align-self: stretch;
 	background-color: var(--border-color);
 }
 
-.class-index {
-	margin: 0;
-	color: rgba(0, 0, 0, 0.5)
+.class-info-container {
+	flex-grow: 1;
 }
 
 .class-name {
@@ -161,4 +163,12 @@ hr {
 .label-text {
 	font-size: 0.9rem;
 	opacity: 0.9;
+}
+
+.class-number {
+	margin: 0 0.25rem;
+
+	align-self: flex-start;
+	font-size: 1.2rem;
+	opacity: 0.65;
 }

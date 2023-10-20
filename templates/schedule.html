@@ -18,7 +18,7 @@
 					<p class="class-time-end">{{ class.end }}</p>
 				</div>
 				<div class="vl"></div>
-				<div class="info-container">
+				<div class="class-info-container">
 					<h3 class="class-name">{{ class.name }}</h3>
 					{% if class.teachers[0] %}
 					<div class="teachers-container">
@@ -45,6 +45,7 @@
 					</div>
 					{% endif %}
 				</div>
+				<div class="class-number">{{ loop.index }}</div>
 			</div>
 			{% endif %}
 		{% endfor %}
