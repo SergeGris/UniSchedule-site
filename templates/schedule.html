@@ -9,20 +9,25 @@
 	<div class="day">
 		<h2 class="day-title">{{ day }}</h2>
 		<hr>
-
 		<div class="classes-container">
 			{% for class in days[loop.index0] %}
 			{% if class.name %}
 			<div class="class">
-				<p class="class-times">{{ class.start }}-{{ class.end }}</p>
-			
-				<h3 class="class-name">{{ class.name }}</h3>
-				{% if class.teachers and class.teachers[0] %}
-				<div class="teachers-container">Учителя: {{ class.teachers | join(", ") }}</div>
-				{% endif %}
-				{% if class.rooms and class.rooms[0] %}
-				<div class="rooms-container">Кабинеты: {{ class.rooms | join(", ") }}</div>
-				{% endif %}
+				<table>
+					<td>
+						<p class="class-time-start">{{ class.start }}</p>
+						<p class="class-time-end">{{ class.end }}</p>
+					</td>
+					<td>
+						<h3 class="class-name">{{ class.name }}</h3>
+						{% if class.teachers and class.teachers[0] %}
+						<div class="teachers-container">{% if class.teachers[1] %} Преподаватели: {% else %} Преподаватель: {% endif %} {{ class.teachers | join(", ") }}</div>
+						{% endif %}
+						{% if class.rooms and class.rooms[0] %}
+						<div class="rooms-container">{% if class.teachers[1] %} Аудитории: {% else %} Аудитория: {% endif %} {{ class.rooms | join(", ") }}</div>
+						{% endif %}
+					</td>
+				</table>
 			</div>
 			{% endif %}
 		{% endfor %}
