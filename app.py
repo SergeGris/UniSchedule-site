@@ -20,16 +20,31 @@ def jsons():
 		return "internal error", 500
 	
 	for uni, faculties in data.items():
-		for faculty, courses in faculties.items():
-			for course, groups in courses.items():
-				if type(groups) == str:
-					if groups.endswith(".json"):
-						try:
-							with open(f"jsons/{groups}", "r") as f:
-								courses[course] = json.load(f)
-						except Exception as e:
-							print(e)
-							return "internal error", 500
+		if type(faculties) == str and ".json" in faculties:
+			try:
+				with open(f"jsons/{faculties}", "r") as f:
+					data[uni] = json.load(f)
+			except Exception as e:
+				print(e)
+				return "internal error", 500
+		else:
+			for faculty, courses in faculties.items():
+				if type(courses) == str and ".json" in courses:
+					try:
+						with open(f"jsons/{courses}", "r") as f:
+							faculties[faculty] = json.load(f)
+					except Exception as e:
+						print(e)
+						return "internal error", 500
+				else:
+					for course, groups in courses.items():
+						if type(groups) == str and ".json" in groups:
+							try:
+								with open(f"jsons/{groups}", "r") as f:
+									courses[course] = json.load(f)
+							except Exception as e:
+								print(e)
+								return "internal error", 500
 
 	return data
 
