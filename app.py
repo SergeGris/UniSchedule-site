@@ -1,54 +1,74 @@
 from flask import Flask, request, render_template
 from dotenv import load_dotenv
-from os import getenv
+from os import getenv, stat
 import json
 
 load_dotenv()
 
+
+
+# json setup
+
+universities = {}
+last_updates = {"main.json": 0}
+
+def update_json():
+	for filename, last_update in last_updates.items():
+		print(filename)
+		curr_update = -1
+		try:
+			curr_update = stat(f"json/{filename}").st_mtime
+		except:
+			del last_updates[filename]
+			break
+
+		if curr_update != last_update:
+			last_updates[filename] = curr_update
+			break
+	else:
+		return
+	
+	print("JSON updated")
+
+	def parse_nested_json(data):
+		iterating = None
+		if type(data) == list:
+			iterating = enumerate(data)
+		elif type(data) == dict:
+			iterating = data.items()
+		else:
+			return data
+
+		for key, value in iterating:
+			if type(value) == str:
+				if value.endswith(".json"):
+					try:
+						with open(f"json/{value}", "r") as f:
+							last_updates[value] = stat(f"json/{value}").st_mtime
+							value = json.load(f)
+					except:
+						last_updates[filename] = -1
+			
+			data[key] = parse_nested_json(value)
+		return data
+
+	with open("json/main.json") as f:
+		global universities
+		universities = parse_nested_json(json.load(f))
+
+
+
+# flask setup
 app = Flask(__name__)
-
-
 
 @app.route("/universities")
 def jsons():
-	data = None
 	try:
-		with open(f"jsons/main.json") as f:
-			data = json.load(f)
+		update_json()
 	except Exception as e:
 		print(e)
 		return "internal error", 500
-	
-	for uni, faculties in data.items():
-		if type(faculties) == str and ".json" in faculties:
-			try:
-				with open(f"jsons/{faculties}", "r") as f:
-					data[uni] = json.load(f)
-			except Exception as e:
-				print(e)
-				return "internal error", 500
-		else:
-			for faculty, courses in faculties.items():
-				if type(courses) == str and ".json" in courses:
-					try:
-						with open(f"jsons/{courses}", "r") as f:
-							faculties[faculty] = json.load(f)
-					except Exception as e:
-						print(e)
-						return "internal error", 500
-				else:
-					for course, groups in courses.items():
-						if type(groups) == str and ".json" in groups:
-							try:
-								with open(f"jsons/{groups}", "r") as f:
-									courses[course] = json.load(f)
-							except Exception as e:
-								print(e)
-								return "internal error", 500
-
-	return data
-
-
+	return universities
 
 @app.route("/")
 def index():
@@ -80,5 +100,6 @@ def schedule():
 
 
 
+# starting the app
 if __name__ == "__main__":
 	app.run(port=getenv("PORT") or 8080, debug=True)
