@@ -61,13 +61,17 @@ def update_json():
 app = Flask(__name__)
 
 @app.route("/universities")
-def jsons():
+def universities():
 	try:
 		update_json()
 	except Exception as e:
 		print(e)
 		return "internal error", 500
 	return universities
+
+@app.route("/last_update")
+def last_update():
+	return str(last_updates["main.json"])
 
 @app.route("/")
 def index():
@@ -104,4 +108,5 @@ def schedule():
 
 # starting the app
 if __name__ == "__main__":
+	update_json()
 	app.run(port=getenv("PORT") or 8080, debug=True)
