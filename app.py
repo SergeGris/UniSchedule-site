@@ -36,19 +36,20 @@ def update_json():
 			iterating = enumerate(data)
 		elif type(data) == dict:
 			iterating = data.items()
+		elif type(data) == str:
+			print(data)
+			if data.endswith(".json"):
+				try:
+					with open(f"json/{data}", "r") as f:
+						last_updates[data] = stat(f"json/{data}").st_mtime
+						data = json.load(f)
+				except:
+					last_updates[data] = -1
+			return data
 		else:
 			return data
 
 		for key, value in iterating:
-			if type(value) == str:
-				if value.endswith(".json"):
-					try:
-						with open(f"json/{value}", "r") as f:
-							last_updates[value] = stat(f"json/{value}").st_mtime
-							value = json.load(f)
-					except:
-						last_updates[filename] = -1
-			
 			data[key] = parse_nested_json(value)
 		return data
 
