@@ -38,7 +38,7 @@ def update_json():
 		elif type(data) == str:
 			if data.endswith(".json"):
 				try:
-					with open(f"json/{data}", "r") as f:
+					with open(f"json/{data}", "r", encoding="utf8") as f:
 						last_updates[data] = stat(f"json/{data}").st_mtime
 						data = json.load(f)
 				except:
@@ -51,7 +51,7 @@ def update_json():
 			data[key] = parse_nested_json(value)
 		return data
 
-	with open("json/main.json") as f:
+	with open("json/main.json", "r", encoding="utf8") as f:
 		global universities
 		universities = parse_nested_json(json.load(f))
 
