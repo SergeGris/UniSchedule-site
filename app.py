@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template
 from dotenv import load_dotenv
 from os import getenv
 import json
@@ -6,6 +6,32 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
+
+
+
+@app.route("/universities")
+def jsons():
+	data = None
+	try:
+		with open(f"jsons/main.json") as f:
+			data = json.load(f)
+	except Exception as e:
+		print(e)
+		return "internal error", 500
+	
+	for uni, faculties in data.items():
+		for faculty, courses in faculties.items():
+			for course, groups in courses.items():
+				if type(groups) == str:
+					if groups.endswith(".json"):
+						try:
+							with open(f"jsons/{groups}", "r") as f:
+								courses[course] = json.load(f)
+						except Exception as e:
+							print(e)
+							return "internal error", 500
+
+	return data
 
 
 

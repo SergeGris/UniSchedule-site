@@ -1,11 +1,7 @@
 :root {
 	--background-color: #eaeaea;
-	--background-darker-color: #e2e2e2;
-	--background-darkest-color: #d9d9d9;
-
-	--select-border: #666;
-	--select-focus: #67e;
-	--select-arrow: var(--select-border);
+	--interact-color: #e2e2e2;
+	--interact-hover-color: #d9d9d9;
 }
 
 html {
@@ -24,7 +20,7 @@ header {
 	padding: 0.75em;
 	height: 2.5em;
 	
-	background-color: var(--background-darker-color);
+	background-color: var(--interact-color);
 }
 header > a {
 	text-decoration: none;
@@ -47,7 +43,7 @@ header h1 {
 }
 
 select, button {
-	background-color: var(--background-darker-color);
+	background-color: var(--interact-color);
 	border: 1px solid var(--select-border);
 	border-radius: 0.25em;
 	padding: 0.25em 0.5em;
@@ -60,7 +56,7 @@ select, button {
 	cursor: pointer;
 }
 select:hover, button:hover {
-	background-color: var(--background-darkest-color);
+	background-color: var(--interact-hover-color);
 }
 select:disabled, button:disabled {
 	cursor: default;
