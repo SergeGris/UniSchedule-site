@@ -22,26 +22,12 @@
 					<h3 class="class-name">{{ class.name }}</h3>
 					{% if class.teachers[0] %}
 					<div class="teachers-container">
-						<span class="label-text">
-							{% if class.teachers | length > 1 %}
-								Преподаватели:
-							{% else %}
-								Преподаватель:
-							{% endif %}
-						</span>
-						{{ class.teachers | join(", ") }}
+						<span class="label-text">{% if class.teachers | length > 1 %}Преподаватели:&ensp;{% else %}Преподаватель:&ensp;{% endif %}</span>{{ class.teachers | join(", ") }}
 					</div>
 					{% endif %}
 					{% if class.rooms[0] %}
 					<div class="rooms-container">
-						<span class="label-text">
-							{% if class.teachers | length > 1 %}
-								Аудитории:
-							{% else %}
-								Аудитория:
-							{% endif %}
-						</span>
-						{{ class.rooms | join(", ") }}
+						<span class="label-text">{% if class.teachers | length > 1 %}Аудитории:&ensp;{% else %}Аудитория:&ensp;{% endif %}</span>{{ class.rooms | join(", ") }}
 					</div>
 					{% endif %}
 				</div>
