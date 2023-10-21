@@ -6,16 +6,17 @@
 
 <div id="days-container">
 	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
+        {% if days[loop.index0] %}
 	<div class="day">
 		<h2 class="day-title">{{ day }}</h2>
-		<hr>
+		<hr></hr>
 		<div class="classes-container">
 			{% for class in days[loop.index0] %}
 			{% if class.name %}
 			<div class="class">
 				<div class="class-time-container">
-					<p class="class-time-start">{{ class.start }}</p>
-					<p class="class-time-end">{{ class.end }}</p>
+					<p class="class-time-start" style="text-align: center">{{ class.start }}</p>
+					<p class="class-time-end" style="text-align: center">{{ class.end }}</p>
 				</div>
 				<div class="vl"></div>
 				<div class="class-info-container">
@@ -37,6 +38,7 @@
 		{% endfor %}
 		</div>
 	</div>
+	{% endif %}
 	{% endfor %}
 </div>
 
