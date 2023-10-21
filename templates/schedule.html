@@ -15,21 +15,18 @@
 			{% if class.name %}
 			<div class="class">
 				<div class="class-time-container">
-					<p class="class-time-start" style="text-align: center">{{ class.start }}</p>
-					<p class="class-time-end" style="text-align: center">{{ class.end }}</p>
+					<p class="class-time-start" style="text-align: center"><strong>{{ class.start }}</strong></p>
+                                        <hr></hr>
+					<p class="class-time-end" style="text-align: center"><strong>{{ class.end }}</strong></p>
 				</div>
 				<div class="vl"></div>
 				<div class="class-info-container">
 					<h3 class="class-name">{{ class.name }}</h3>
-					{% if class.teachers[0] %}
-					<div class="teachers-container">
-						<span class="label-text">{% if class.teachers | length > 1 %}Преподаватели:&ensp;{% else %}Преподаватель:&ensp;{% endif %}</span>{{ class.teachers | join(", ") }}
-					</div>
-					{% endif %}
 					{% if class.rooms[0] %}
-					<div class="rooms-container">
-						<span class="label-text">{% if class.teachers | length > 1 %}Аудитории:&ensp;{% else %}Аудитория:&ensp;{% endif %}</span>{{ class.rooms | join(", ") }}
-					</div>
+					<div class="rooms-container"><span class="label-text">{% if class.rooms | length > 1 %}Аудитории:&ensp;{% else %}Аудитория:&ensp;{% endif %}</span><strong>{{ class.rooms | join(", ") }}</strong></div>
+					{% endif %}
+					{% if class.teachers[0] %}
+					<div class="teachers-container"><span class="label-text">{% if class.teachers | length > 1 %}Преподаватели:&ensp;{% else %}Преподаватель:&ensp;{% endif %}</span>{{ class.teachers | join(", ") }}</div>
 					{% endif %}
 				</div>
 				<div class="class-number">{{ loop.index }}</div>
