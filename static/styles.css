@@ -10,8 +10,9 @@
 
 html {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 18px;
+	font-size: min(18px, 4vw);
 }
+
 body {
 	margin: 0;
 	background-color: var(--background-color);
@@ -27,7 +28,8 @@ header {
 
 	background-color: var(--interact-color);
 }
-header > a {
+
+header>a {
 	text-decoration: none;
 	color: inherit;
 
@@ -40,14 +42,17 @@ header > a {
 	max-width: fit-content;
 	height: 100%;
 }
+
 header img {
 	height: 100%;
 }
+
 header h1 {
 	margin: 0;
 }
 
-select, button {
+select,
+button {
 	background-color: var(--interact-color);
 	border: 1px solid var(--select-border);
 	border-radius: 0.25em;
@@ -60,10 +65,14 @@ select, button {
 	outline: none;
 	cursor: pointer;
 }
-select:hover, button:hover {
+
+select:hover,
+button:hover {
 	background-color: var(--interact-hover-color);
 }
-select:disabled, button:disabled {
+
+select:disabled,
+button:disabled {
 	cursor: default;
 	background-color: var(--background-color);
 }
@@ -86,6 +95,7 @@ hr {
 	flex-direction: column;
 	gap: 1rem;
 }
+
 #uni-form h3 {
 	margin-top: 0;
 	margin-bottom: 0.5rem;
@@ -104,6 +114,7 @@ hr {
 	border-radius: var(--border-radius);
 	border: 1px solid var(--border-color);
 }
+
 .day-title {
 	margin: 1rem;
 }
@@ -122,6 +133,7 @@ hr {
 
 	padding: 0.5rem 0.75rem;
 }
+
 .class:nth-child(even) {
 	background-color: rgba(255, 255, 255, 0.4);
 }
