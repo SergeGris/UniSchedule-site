@@ -18,6 +18,8 @@
 }
 
 .tab-button {
+	flex-grow: 1;
+
 	border: none;
 	border-radius: inherit;
 
