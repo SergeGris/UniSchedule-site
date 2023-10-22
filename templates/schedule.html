@@ -27,11 +27,12 @@
 	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
 	{% if days[loop.index0] %}
 	<div id="day-{{ loop.index0 }}-container" class="day">
-		<h2 class="day-title">{{ day }}</h2>
+		<h3 class="day-title">{{ day }}</h3>
 		<hr>
 		<div class="classes-container">
 			{% for class in days[loop.index0] %}
 			{% if class.name %}
+			{% if loop.index0 > 0 %}<hr>{% endif %}
 			<div class="class">
 				<div class="class-time-container">
 					<p class="class-time-start">{{ class.start }}</p>

@@ -34,7 +34,7 @@
 }
 
 .tab-button.active {
-	background-color: #ccc;
+	background-color: #aaa;
 }
 
 
@@ -53,6 +53,7 @@
 
 .day-title {
 	margin: 1rem;
+	text-align: center;
 }
 
 .classes-container {
@@ -83,14 +84,14 @@
 	margin: 0;
 	font-size: 1.2rem;
 	opacity: 1;
-    text-align: center;
+	text-align: center;
 	font-weight: bold;
 }
 
 .class-time-end {
 	margin: 0;
 	opacity: 0.8;
-    text-align: center;
+	text-align: center;
 }
 
 .vl {
@@ -111,8 +112,8 @@
 }
 
 .label-text {
-	font-size: 0.9rem;
-	opacity: 0.9;
+	font-size: 0.8rem;
+	opacity: 0.8;
 }
 
 .rooms {
