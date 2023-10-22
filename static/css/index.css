@@ -1,0 +1,18 @@
+#content {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	text-align: center;
+}
+
+#uni-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#uni-form h3 {
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+}

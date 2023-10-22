@@ -1,0 +1,85 @@
+:root {
+	--background-color: #eaeaea;
+	--interact-color: #e2e2e2;
+	--interact-hover-color: #d9d9d9;
+	--accent-color: #07004b;
+
+	--border-radius: 0.5rem;
+	--border-color: #bebebe;
+}
+
+html {
+	font-family: 'Montserrat', sans-serif;
+	font-size: min(18px, 4vw);
+}
+
+body {
+	margin: 0;
+	background-color: var(--background-color);
+}
+
+header {
+	position: sticky;
+	top: 0;
+
+	padding: 0.75em;
+	height: 2.5em;
+
+	background-color: var(--interact-color);
+}
+
+header>a {
+	text-decoration: none;
+	color: inherit;
+
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5em;
+
+	max-width: fit-content;
+	height: 100%;
+}
+
+header img {
+	height: 100%;
+}
+
+header h1 {
+	margin: 0;
+}
+
+select, button {
+	background-color: var(--interact-color);
+	border: 1px solid var(--select-border);
+	border-radius: 0.25em;
+	padding: 0.25em 0.5em;
+	margin: 0;
+	min-width: fit-content;
+	width: 10em;
+	font-family: inherit;
+	font-size: inherit;
+	outline: none;
+	cursor: pointer;
+}
+
+select:hover, button:hover {
+	background-color: var(--interact-hover-color);
+}
+
+select:disabled, button:disabled {
+	cursor: default;
+	background-color: var(--background-color);
+}
+
+hr {
+	height: 1px;
+	border: none;
+	margin: 0.5rem 0.75rem;
+	background-color: var(--border-color);
+}
+
+#content {
+	margin: 1rem;
+}

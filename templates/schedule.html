@@ -2,100 +2,82 @@
 
 {% block title %}{% endblock %}
 
-{% block content %}
+{% block styles %}
+<link rel="stylesheet" href="/static/css/schedule.css" />
+{% endblock %}
 
-<div class="tab">
+{% block scripts %}
+<script src="/static/js/schedule.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="days-tab">
 	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
+
 	{% if days[loop.index0] %}
-	<button id="{{ loop.index0 }}" class="tablinks" onclick="openDay(event, '{{ day }}')">{{ ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"][loop.index0] }}</button>
+	<button id="day-{{ loop.index0 }}" class="tab-button" onclick="openDay(event)">
+		{{ ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"][loop.index0] }}
+	</button>
 	{% endif %}
+
 	{% endfor %}
 </div>
 
 <div id="days-container">
 	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
-        {% if days[loop.index0] %}
-	<div id={{ day }} class="tabcontent">
+	{% if days[loop.index0] %}
+	<div id="day-{{ loop.index0 }}-container" class="day">
 		<h2 class="day-title">{{ day }}</h2>
-		<hr></hr>
+		<hr>
 		<div class="classes-container">
 			{% for class in days[loop.index0] %}
 			{% if class.name %}
 			<div class="class">
 				<div class="class-time-container">
-					<p class="class-time-start"><strong>{{ class.start }}</strong></p>
-                                        <hr></hr>
-					<p class="class-time-end"><strong>{{ class.end }}</strong></p>
+					<p class="class-time-start">{{ class.start }}</p>
+					<hr>
+					<p class="class-time-end">{{ class.end }}</p>
 				</div>
 				<div class="vl"></div>
 				<div class="class-info-container">
 					<h3 class="class-name">{{ class.name }}</h3>
 					{% if class.rooms[0] %}
-					<div class="rooms-container"><span class="label-text">{% if class.rooms | length > 1 %}Аудитории:&ensp;{% else %}Аудитория:&ensp;{% endif %}</span><strong>{{ class.rooms | join(", ") }}</strong></div>
+					<div class="rooms-container">
+						<span class="label-text">
+							{% if class.rooms | length > 1 %}
+							Аудитории:
+							{% else %}
+							Аудитория:
+							{% endif %}
+						</span>
+						<span class="rooms">
+							{{ class.rooms | join(", ") }}
+						</span>
+					</div>
 					{% endif %}
 					{% if class.teachers[0] %}
-					<div class="teachers-container"><span class="label-text">{% if class.teachers | length > 1 %}Преподаватели:&ensp;{% else %}Преподаватель:&ensp;{% endif %}</span>{{ class.teachers | join(", ") }}</div>
+					<div class="teachers-container">
+						<span class="label-text">
+							{% if class.teachers | length > 1 %}
+							Преподаватели:
+							{% else %}
+							Преподаватель:
+							{% endif %}
+						</span>
+						<span class="teachers">
+							{{ class.teachers | join(", ") }}
+						</span>
+					</div>
 					{% endif %}
 				</div>
 				<div class="class-number">{{ loop.index }}</div>
 			</div>
 			{% endif %}
-		{% endfor %}
+			{% endfor %}
 		</div>
 	</div>
 	{% endif %}
 	{% endfor %}
 </div>
-
-<script>
-// Used in schedule.html
-function openDay(evt, name) {
-	var i, tabcontent, tablinks;
-
-	// Get all elements with class="tabcontent" and hide them.
-	tabcontent = document.getElementsByClassName("tabcontent");
-
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
-
-	// Get all elements with class="tablinks" and remove the class "active"
-	tablinks = document.getElementsByClassName("tablinks");
-
-	for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" active", "");
-	}
-
-	// Show the current tab, and add an "active" class to the button that opened the tab
-	document.getElementById(name).style.display = "block";
-	evt.currentTarget.className += " active";
-	currentTab = name;
-}
-
-function getDay() {
-	const d = new Date();
-	var r = d.getDay();
-
-	// getDay returns 0 for Sunday, but we are russian, so we number weekdays starting from Monday.
-	r--;
-
-	if (r < 0)
-                r += 7;
-
-	return r;
-}
-
-function openSuitableDay() {
-	const day = getDay();
-
-	if (document.getElementById(day) === null) {
-		document.getElementById(0).click();
-	} else {
-		document.getElementById(day).click();
-	}
-}
-
-openSuitableDay();
-</script>
 
 {% endblock %}

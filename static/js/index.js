@@ -4,22 +4,63 @@ let elements = [];
 
 let removeOptions = (index) => {
 	let el = elements[index];
+	if (!el) return;
 	while (el.children.length > 1) el.removeChild(el.lastChild);
 
 	el.value = "";
 };
 
 let modifyOptions = (index, values) => {
-	console.log(word_map);
 	removeOptions(index);
 
 	let el = elements[index];
 	for (let value of values) {
 		let option = document.createElement("option");
 		option.value = value;
-		console.log(value);
 		option.innerText = word_map[value] || value;
 		el.appendChild(option);
+	}
+};
+
+let openDay = (event, name) => {
+	let i, tabcontent, tablinks;
+
+	// Get all elements with class="tabcontent" and hide them.
+	tabcontent = document.getElementsByClassName("tabcontent");
+
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+
+	// Get all elements with class="tablinks" and remove the class "active"
+	tablinks = document.getElementsByClassName("tablinks");
+
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].classList.remove("active");
+	}
+
+	// Show the current tab, and add an "active" class to the button that opened the tab
+	document.getElementById(name).style.display = "block";
+	event.currentTarget.classList.add("active");
+};
+
+let getDay = () => {
+	const d = new Date();
+	// getDay returns 0 for Sunday, but we are russian, so we number weekdays starting from Monday.
+	let r = d.getDay() - 1;
+
+	if (r < 0) r += 7;
+
+	return r;
+};
+
+let openSuitableDay = () => {
+	const day = getDay();
+
+	if (document.getElementById(day) === null) {
+		document.getElementById(0).click();
+	} else {
+		document.getElementById(day).click();
 	}
 };
 
