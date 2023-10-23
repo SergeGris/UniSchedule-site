@@ -8,10 +8,8 @@ let showTab = (show) => {
 let showAllDays = () => {
 	document.getElementById("days-tab").style.display = "none";
 
-	for (let i = 0; i < 7; i++) {
-		let day = document.getElementById(`day-${i}-container`);
-		if (day) day.style.display = "block";
-	}
+	for (let day of document.getElementsByClassName("day"))
+		day.style.display = "block";
 };
 
 let openDay = (event) => {
@@ -25,10 +23,8 @@ let openDay = (event) => {
 	}
 
 	// Get all elements with class="tab-button" and remove the class "active"
-	let tabButtons = document.getElementsByClassName("tab-button");
-
-	for (let i = 0; i < tabButtons.length; i++)
-		tabButtons[i].classList.remove("active");
+	for (let tabButton of document.getElementsByClassName("tab-button"))
+		tabButton.classList.remove("active");
 
 	// Show the current tab, and add an "active" class to the button that opened the tab
 	document.getElementById(
