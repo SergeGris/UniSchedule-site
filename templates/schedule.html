@@ -28,11 +28,10 @@
 	{% if days[loop.index0] %}
 	<div id="day-{{ loop.index0 }}-container" class="day">
 		<h3 class="day-title">{{ day }}</h3>
-		<hr>
 		<div class="classes-container">
 			{% for class in days[loop.index0] %}
 			{% if class.name %}
-			{% if loop.index0 > 0 %}<hr>{% endif %}
+			<div class="tab-delimiter"></div>
 			<div class="class">
 				<div class="class-time-container">
 					<p class="class-time-start">{{ class.start }}</p>

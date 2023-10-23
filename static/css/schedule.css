@@ -37,6 +37,13 @@
 	background-color: #aaa;
 }
 
+.tab-delimiter {
+	height: 1px;
+	flex-shrink: 0;
+	border: none;
+	align-self: stretch;
+	background-color: var(--border-color);
+}
 
 
 /* schedule */
