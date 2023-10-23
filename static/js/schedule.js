@@ -1,4 +1,22 @@
+let selectedDay = null;
+
+let showTab = (show) => {
+	if (show) openSuitableDay();
+	else showAllDays();
+};
+
+let showAllDays = () => {
+	document.getElementById("days-tab").style.display = "none";
+
+	for (let i = 0; i < 7; i++) {
+		let day = document.getElementById(`day-${i}-container`);
+		if (day) day.style.display = "block";
+	}
+};
+
 let openDay = (event) => {
+	document.getElementById("days-tab").style.display = "flex";
+
 	// Get all elements with class="day" and hide them.
 	let days = document.getElementsByClassName("day");
 
@@ -17,6 +35,8 @@ let openDay = (event) => {
 		`${event.currentTarget.id}-container`
 	).style.display = "block";
 	event.currentTarget.classList.add("active");
+
+	selectedDay = event.currentTarget.dataset.day;
 };
 
 let getDay = () => {
@@ -30,7 +50,7 @@ let getDay = () => {
 };
 
 let openSuitableDay = () => {
-	const day = getDay();
+	const day = selectedDay || getDay();
 
 	let dayButton =
 		document.getElementById(`day-${day}`) ??
@@ -38,6 +58,6 @@ let openSuitableDay = () => {
 	dayButton.click();
 };
 
-window.onload = () => {
-	openSuitableDay();
+window.onload = window.onresize = () => {
+	showTab(window.innerWidth < 800);
 };

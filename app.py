@@ -116,4 +116,4 @@ def schedule():
 # starting the app
 if __name__ == "__main__":
 	update_json()
-	app.run(port=getenv("PORT") or 8080, debug=True)
+	app.run(host=getenv("HOST") or "127.0.0.1", port=getenv("PORT") or 8080, debug=True)
