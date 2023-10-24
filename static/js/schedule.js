@@ -1,18 +1,18 @@
-let selectedDay = null;
+let selectedWeekDay = null;
 
-let showTab = (show) => {
-	if (show) openSuitableDay();
-	else showAllDays();
+let showTabs = (show) => {
+	if (show) openSuitableWeekDay();
+	else showAllWeekDays();
 };
 
-let showAllDays = () => {
+let showAllWeekDays = () => {
 	document.getElementById("days-tab").style.display = "none";
 
 	for (let day of document.getElementsByClassName("day"))
 		day.style.display = "block";
 };
 
-let openDay = (event) => {
+let openWeekDay = (event) => {
 	document.getElementById("days-tab").style.display = "flex";
 
 	// Get all elements with class="day" and hide them.
@@ -31,13 +31,14 @@ let openDay = (event) => {
 		`${event.currentTarget.id}-container`
 	).style.display = "block";
 	event.currentTarget.classList.add("active");
-
 	selectedDay = event.currentTarget.dataset.day;
 };
 
-let getDay = () => {
+// Returns 0..6 for Monday..Sunday.
+let getWeekDay = () => {
 	const d = new Date();
-	// getDay returns 0 for Sunday, but we are russian, so we number weekdays starting from Monday.
+	// Date.getDay returns 0 for Sunday, but we are russian,
+	// so we number weekdays starting from Monday.
 	let r = d.getDay() - 1;
 
 	if (r < 0) r += 7;
@@ -45,8 +46,8 @@ let getDay = () => {
 	return r;
 };
 
-let openSuitableDay = () => {
-	const day = selectedDay || getDay();
+let openSuitableWeekDay = () => {
+	const day = selectedWeekDay || getWeekDay();
 
 	let dayButton =
 		document.getElementById(`day-${day}`) ??
@@ -55,5 +56,5 @@ let openSuitableDay = () => {
 };
 
 window.onload = window.onresize = () => {
-	showTab(window.innerWidth < 800);
+	showTabs(window.innerWidth < 800);
 };
