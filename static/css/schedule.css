@@ -12,7 +12,7 @@
 	align-items: center;
 	justify-content: space-between;
 
-	border-radius: var(--border-radius);
+	border-radius: 3rem; /* var(--border-radius); */
 	border: 1px solid var(--border-color);
 	background-color: #f1f1f1;
 }
@@ -27,6 +27,7 @@
 
 	background-color: inherit;
 	transition: background-color 0.4s;
+	height: 2.5rem;
 }
 
 .tab-button:hover {
@@ -56,6 +57,7 @@
 .day {
 	border-radius: var(--border-radius);
 	border: 1px solid var(--border-color);
+	display: none;
 }
 
 .day-title {
