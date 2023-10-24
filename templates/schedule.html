@@ -15,7 +15,7 @@
 	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
 
 	{% if days[loop.index0] %}
-	<button id="day-{{ loop.index0 }}" class="tab-button" data-day="{{ loop.index0 }}" onclick="openDay(event)">
+	<button id="day-{{ loop.index0 }}" class="tab-button" data-day="{{ loop.index0 }}" onclick="openWeekDay(event)">
 		{{ ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"][loop.index0] }}
 	</button>
 	{% endif %}
