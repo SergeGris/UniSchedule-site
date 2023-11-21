@@ -70,6 +70,10 @@
 	flex-direction: column;
 }
 
+.classes-container > hr {
+	margin: 0 0.75rem;
+}
+
 .class {
 	display: flex;
 	flex-direction: row;
@@ -77,7 +81,7 @@
 	justify-content: stretch;
 	align-items: center;
 
-	padding: 0.5rem 0.75rem;
+	padding: 1rem 0.75rem;
 }
 
 .class:nth-child(4n - 2) {
