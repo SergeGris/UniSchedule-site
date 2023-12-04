@@ -61,7 +61,7 @@
 }
 
 .day-title {
-	margin: 1rem;
+	margin: 0.5rem;
 	text-align: center;
 }
 
@@ -101,7 +101,7 @@
 	font-weight: bold;
 }
 
-.class-time-end {
+.class-time-finish {
 	margin: 0;
 	opacity: 0.8;
 }

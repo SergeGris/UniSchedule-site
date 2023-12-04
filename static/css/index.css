@@ -16,3 +16,7 @@
 	margin-top: 0;
 	margin-bottom: 0.5rem;
 }
+
+#uni-select:enabled, #faculty-select:enabled, #course-select:enabled, #group-select:enabled, #search-button:enabled {
+	background-color: #ccc;
+}

@@ -12,11 +12,11 @@
 
 {% block content %}
 <div id="days-tab">
-	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
+	{% for day in ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'] %}
 
 	{% if days[loop.index0] %}
 	<button id="day-{{ loop.index0 }}" class="tab-button" data-day="{{ loop.index0 }}" onclick="openWeekDay(event)">
-		{{ ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"][loop.index0] }}
+		{{ ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'][loop.index0] }}
 	</button>
 	{% endif %}
 
@@ -24,7 +24,7 @@
 </div>
 
 <div id="days-container">
-	{% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
+	{% for day in ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'] %}
 	{% if days[loop.index0] %}
 	<div id="day-{{ loop.index0 }}-container" class="day">
 		<h3 class="day-title">{{ day }}</h3>
@@ -36,7 +36,7 @@
 				<div class="class-time-container">
 					<p class="class-time-start">{{ class.start }}</p>
 					<hr>
-					<p class="class-time-end">{{ class.end }}</p>
+					<p class="class-time-finish">{{ class.finish }}</p>
 				</div>
 				<div class="vl"></div>
 				<div class="class-info-container">
@@ -70,7 +70,9 @@
 					</div>
 					{% endif %}
 				</div>
-				<div class="class-number">{{ loop.index }}</div>
+				<div class="class-number">
+					{{ loop.index }}
+				</div>
 			</div>
 			{% endif %}
 			{% endfor %}
