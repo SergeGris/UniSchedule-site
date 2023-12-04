@@ -34,18 +34,21 @@ def update_json():
 
 	def parse_nested_json(data):
 		iterating = None
+		print(data)
 		if type(data) == list:
 			iterating = enumerate(data)
 		elif type(data) == dict:
 			iterating = data.items()
 		elif type(data) == str:
 			if data.endswith(".json"):
+				print(data)
 				try:
 					with open(f"json/{data}", "r", encoding="utf8") as f:
 						last_updates[data] = stat(f"json/{data}").st_mtime
-						data = json.load(f)
+						data = parse_nested_json(json.load(f))
 				except:
 					last_updates[data] = -1
+			print(data)
 			return data
 		else:
 			return data
