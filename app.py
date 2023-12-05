@@ -32,29 +32,27 @@ def update_json():
 	
 	print("JSON updated")
 
-	def parse_nested_json(data):
+	def parse_nested_json(data, curr_dir="/"):
 		iterating = None
-		print(data)
 		if type(data) == list:
 			iterating = enumerate(data)
 		elif type(data) == dict:
 			iterating = data.items()
 		elif type(data) == str:
 			if data.endswith(".json"):
-				print(data)
 				try:
-					with open(f"json/{data}", "r", encoding="utf8") as f:
-						last_updates[data] = stat(f"json/{data}").st_mtime
-						data = parse_nested_json(json.load(f))
+					with open(f"json{curr_dir}{data}", "r", encoding="utf8") as f:
+						last_updates[data] = stat(f"json{curr_dir}{data}").st_mtime
+						new_dir = curr_dir + "/".join(data.split("/")[:-1]) + "/"
+						data = parse_nested_json(json.load(f), new_dir)
 				except:
 					last_updates[data] = -1
-			print(data)
 			return data
 		else:
 			return data
 
 		for key, value in iterating:
-			data[key] = parse_nested_json(value)
+			data[key] = parse_nested_json(value, curr_dir)
 		return data
 
 	with open("json/main.json", "r", encoding="utf8") as f:
