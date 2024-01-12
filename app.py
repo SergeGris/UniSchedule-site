@@ -14,7 +14,7 @@ word_map = {}
 with open("json/map.json", "r", encoding="utf8") as f:
 	word_map = json.load(f)
 
-last_updates = {"main.json": 0}
+last_updates = {"manifest.json": 0}
 def update_json():
 	for filename, last_update in last_updates.items():
 		curr_update = -1
@@ -29,7 +29,7 @@ def update_json():
 			break
 	else:
 		return
-	
+
 	print("JSON updated")
 
 	def parse_nested_json(data, curr_dir="/"):
@@ -55,7 +55,7 @@ def update_json():
 			data[key] = parse_nested_json(value, curr_dir)
 		return data
 
-	with open("json/main.json", "r", encoding="utf8") as f:
+	with open("json/manifest.json", "r", encoding="utf8") as f:
 		global universities
 		universities = parse_nested_json(json.load(f))
 
@@ -79,7 +79,7 @@ def get_word_map():
 
 @app.route("/last_update")
 def last_update():
-	return str(last_updates["main.json"])
+	return str(last_updates["manifest.json"])
 
 @app.route("/")
 def index():
